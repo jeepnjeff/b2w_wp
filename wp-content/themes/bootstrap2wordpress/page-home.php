@@ -26,7 +26,9 @@ Template Name: Home Page
     $who_section_title       = get_field('who_section_title');
     $who_section_body        = get_field('who_section_body');
     
-
+    $features_section_image  = get_field('features_section_image');
+    $features_section_title  = get_field('features_section_title');
+    $features_section_body   = get_field('features_section_body');
 
     
 get_header();
@@ -168,8 +170,17 @@ get_header();
         <div class="container">
 
             <div class="section-header">
-                <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-rocket.png" alt="Rocket">
-                <h2>Course Features</h2>
+                <!-- If user uploaded an image -->
+ <?php if( !empty($features_section_image)) : ?>
+
+<img src="<?php echo $features_section_image['url']; ?>" alt="<?php echo $features_section_image['alt']; ?>">
+<?php endif; ?>
+                <h2><?php echo $features_section_title; ?> </h2>
+
+                <!-- If user added body text -->
+                <?php if( empty($features_section_body)) : ?>
+                <p class="lead"><?php echo $features_section_body; ?></p>
+<?php endif; ?>
             </div>
             <!-- section-header -->
 
